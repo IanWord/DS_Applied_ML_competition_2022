@@ -3,8 +3,8 @@ University of Southern Denmark 2022, Applied Machine Learning Classroom Kaggle C
 
 Dataset consists of training set 48000 observations, 204 features. Test set is for predictions for kaggle leaderboard (invite only - i.e. only 3rd generation Data Science students at SDU, taking the applied machine learning course by professor Christian Møller Dahl could submit solutions). Of approx 100 students, some 30 people (or groups) submitted solutions.
 
-First place was dominating for months, approximately 90 percent performance. I tried applying different feature selection methods, dimensionality reduction methods, and tried these on about 15 different models. They were close, but they did not beat the leader. 
-In addition, what I noticed that it was very clear, that our models performed much better precision and recall on class 0 and 2 vs class 1. Here is two random examples from the many models i ran: 
+First place was dominating for months, approximately 90 percent accuracy. I tried applying different feature selection methods, dimensionality reduction methods, and tried these on about 15 different models. They were close, but they did not beat the leader. 
+In addition, what I noticed that it was very clear, that my models performed much better precision and recall on class 0 and 2 vs class 1. Here is two random examples from the many models i ran: 
 
 AdaBoost Tuned:
 | Class | Precision | Recall | Support |
