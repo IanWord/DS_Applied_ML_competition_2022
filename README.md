@@ -69,6 +69,7 @@ An original feature is considered to have received a hit when its feature import
 
 There are three hypotheses:
 
+
 The Null Hypothesis H0
 We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with rameters k and p before running the test by saying that, in each of the k runs, there is a 50% chance that feature xi will receive a hit (i.e. a probability p=0.5 p=0.5). 
 
