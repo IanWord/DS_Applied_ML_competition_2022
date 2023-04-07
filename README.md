@@ -74,10 +74,13 @@ We do not know apriori whether feature xi is useful or not. We expect the outcom
 
 The CDF of a Binomial distribution allows us to compute the two-sided symmetric confidence intervals [mq(k), Mq(k)].
 
+
 The Alternate Hypothesis H1
 When the number of hits hi observed after k runs exceeds Mq(k) we reject the hypothesis H0, that is we believe that feature Xi is more likely to be useful than not.
 
 We have a second alternative hypothessis, that represents the fact that even after say K=100 iterations, results are inconclusive.
+
+
 The Alternate Hypothesis H2
 
 Feature xi is useless When the number of hits hi observed after k runs is lower than mq(k), we reject H0 with the outcome that we lean towards Xi being more useless than useful. 
