@@ -6,6 +6,7 @@ Dataset consists of training set 48000 observations, 204 features. Test set is f
 First place was dominating for months, approximately 90 percent performance. I tried applying different feature selection methods, dimensionality reduction methods, and tried these on about 15 different models. They were close, but they did not beat the leader. 
 In addition, what I noticed that it was very clear, that our models performed much better precision and recall on class 0 and 2 vs class 1. Here is two random examples from the many models i ran: 
 
+AdaBoost Tuned:
 | Class | Precision | Recall | Support |
 |-------|-----------|--------|---------|
 | 0     | 0.92      | 0.55   | 2396    |
@@ -16,7 +17,16 @@ In addition, what I noticed that it was very clear, that our models performed mu
 | Weighted Avg       | 0.83          | 0.79 |      9600   |
 |-------|---------------|------|---------|
 
-
+XGBoost Tuned:
+| Class | Precision | Recall | Support |
+|-------|-----------|--------|---------|
+| 0     | 0.86      | 0.81   | 2396    |
+| 1     | 0.78      | 0.80   | 3310    |
+| 2     | 0.87      | 0.89   | 3894    |
+|-------|-----------|--------|---------|
+| Macro Avg      | 0.84      | 0.83   |    9600     |
+| Weighted Avg       | 0.84          | 0.84 |      9600   |
+|-------|---------------|------|---------|
 
 Classification report from XGBoost tuned
               precision    recall    support
