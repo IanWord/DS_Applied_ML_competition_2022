@@ -45,7 +45,8 @@ My approach can be summarized as:
 7. Evaluate prediction
 
 For ppl interested in Feature selection, Boruta, I describe it here:
-####The Boruta Feature Selection Algorithm
+
+The Boruta Feature Selection Algorithm
 
 As given by the paper:
 1.	Extend the information system by adding copies of all variables (the information system is always extended by at least 5 shadow attributes, even if the number of attributes in the original set is lower than 5).
