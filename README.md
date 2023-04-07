@@ -15,11 +15,10 @@ In addition, what I noticed that it was very clear, that our models performed mu
 |       | Accuracy  |        | 9600    |
 |       | 0.83      |        |         |
 |-------|-----------|--------|---------|
-|       | Macro Avg |        | 9600    |
-|       | 0.83      | 0.77   |         |
+| Macro Avg      | 0.83      | 0.77   |    9600     |
 |-------|-----------|--------|---------|
 |       | Weighted Avg |     | 9600    |
-|       | 0.83          | 0.79 |         |
+| Weighted Avg       | 0.83          | 0.79 |      9600   |
 |-------|---------------|------|---------|
 
 
