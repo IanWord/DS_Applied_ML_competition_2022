@@ -28,34 +28,21 @@ XGBoost Tuned:
 | Weighted Avg       | 0.84          | 0.84 |      9600   |
 |-------|---------------|------|---------|
 
-Classification report from XGBoost tuned
-              precision    recall    support
-
-           0       0.86      0.81      2396
-           1       0.78      0.80      3310
-           2       0.87      0.89      3894
-
-    accuracy                           9600
-   macro avg       0.84      0.83      9600
-weighted avg       0.84      0.84      9600
-
-These results are representative of the patterns I saw in all models. 
 Months went by, and then it hit me. If Class 1 is difficult to distinguish from class 0 and 2, maybe a classifier would have an easier job if it only would have to separate either class 0 from 1 or class 2 from 1. 
 
 So, I chose to separate the training set into three subsets X_train_0_1, X_train_1_2 and X_train_0_2. The idea then would be to train a model on each subset, use the subsets to predict on the FULL validation and test set, and then average those predictions (ensemble). 
 
-As my notebook will show, it worked, and it worked so well that i achieved 1st place. 
+As my notebook will show, it worked, and it worked so well that I achieved 1st place. 
 
 My approach can be summarized as:
 
 1. Load data, split data into train, test, validation and normalize the data.
-2. Apply Boruta Feature selection algorithm (my favorite)
+2. Apply Boruta Feature selection algorithm (my favorite feature selection algorithm)
 3. Split train set into three subsets: X_train_0_1, X_train_1_2 and X_train_0_2
 4. Tune a model on each subset
 5. Predict on full validation and testset
 6. Average predictions
 7. Evaluate prediction
-
 
 For ppl interested in Feature selection, Boruta, I describe it here:
 ####The Boruta Feature Selection Algorithm
@@ -71,10 +58,7 @@ As given by the paper:
 8.	Remove all shadow attributes.
 9.	Repeat the procedure until the importance is assigned for all the attributes, or the algorithm has reached the previously set limit of the random forest runs.
 
-
-More specifically, what the Boruta Feature selection algorithm does, is provide a bernoulli trial. a randomized trial experiment where we test each feature to its randomized version. That is, Boruta gives a statistical answer to the following question: what is the threshold below which feature importance scores should be deemed so low that associated features ought to be useless? 
-
-Because shadow features are useless, it basically states that no feature should have worse feature importance scores than shadow features. It cant be important to the classification or regression problem.  
+Because shadow features (MZSA) are useless, Boruta basically states that no feature should have worse feature importance scores than shadow features. It cant be important to the classification or regression problem.  
 
 The shuffling has two functionalities, it breaks down multicollinearity and causes shadow features to have the same marginal distributions as original features, but they are independent of the target both unconditionally and conditional on original features.
 
@@ -82,20 +66,21 @@ In essence, The Boruta algorithm treats the test as a Bernoulli trial. That is, 
 
 An original feature is considered to have received a hit when its feature importance score is higher than the scores of all shadow features.
 
-There are three hypotheses.
-The Null Hypothesis H0
+There are three hypotheses:
 
+The Null Hypothesis H0
 We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with rameters k and p before running the test by saying that, in each of the k runs, there is a 50% chance that feature xi will receive a hit (i.e. a probability p=0.5 p=0.5). 
 
-This forms the null hypothesis
+The CDF of a Binomial distribution allows us to compute the two-sided symmetric confidence intervals [mq(k), Mq(k)].
 
 The Alternate Hypothesis H1
-
 When the number of hits hi observed after k runs exceeds Mq(k) we reject the hypothesis H0, that is we believe that feature Xi is more likely to be useful than not.
 
-We have a second alternative hypothessis, that represents the fact that even after 100 iterations, results are inconclusive.
+We have a second alternative hypothessis, that represents the fact that even after say K=100 iterations, results are inconclusive.
 The Alternate Hypothesis H2
 
 Feature xi is useless When the number of hits hi observed after k runs is lower than mq(k), we reject H0 with the outcome that we lean towards Xi being more useless than useful. 
 
-Feature importances are fundamentally flawed. Feature importance score implicitly state that the model is competent. There are high risks that if model is overfitted, you would base you feature selection decisions on wrong premises. What makes Boruta Feature selection more robust is the fact that we first of all test each feature against a randomized copy, and we rerun the modelling, say 100 times. The chance of overfitting to any single feature, becomes much smaller with a large K. 
+This happens occasionally, and you can either choose to change thresholds on Boruta (alpha or the stringency=perc) or you can extend >K to more trials. Eventually it should converge on a decision.
+
+Feature importances are fundamentally flawed. Feature importance score implicitly state that the model is competent. There are high risks that if model is overfitted, you would base you feature selection decisions on wrong premises. What makes Boruta Feature selection more robust is the fact that we first of all test each feature against a randomized copy, and the fact that we rerun the modelling, say 100 times. The chance of overfitting to any single feature, becomes much smaller with a large K. 
