@@ -71,12 +71,14 @@ There are three hypotheses:
 
 
 The Null Hypothesis H0
+
 We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with rameters k and p before running the test by saying that, in each of the k runs, there is a 50% chance that feature xi will receive a hit (i.e. a probability p=0.5 p=0.5). 
 
 The CDF of a Binomial distribution allows us to compute the two-sided symmetric confidence intervals [mq(k), Mq(k)].
 
 
 The Alternate Hypothesis H1
+
 When the number of hits hi observed after k runs exceeds Mq(k) we reject the hypothesis H0, that is we believe that feature Xi is more likely to be useful than not.
 
 We have a second alternative hypothessis, that represents the fact that even after say K=100 iterations, results are inconclusive.
