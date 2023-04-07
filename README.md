@@ -44,6 +44,19 @@ My approach can be summarized as:
 6. Average predictions
 7. Evaluate prediction
 
+
+My solution: Ensemble of CatBoost Tuned on the three subsets:
+| Class | Precision | Recall | Support |
+|-------|-----------|--------|---------|
+| 0     | 0.93      | 0.87   | 2462    |
+| 1     | 0.89      | 0.91   | 3325    |
+| 2     | 0.92      | 0.94   | 3813    |
+|-------|-----------|--------|---------|
+| Macro Avg      | 0.91      | 0.91   |    9600     |
+| Weighted Avg       | 0.91          | 0.91 |      9600   |
+|-------|---------------|------|---------|
+
+
 For ppl interested in Feature selection, Boruta, I describe it here:
 
 The Boruta Feature Selection Algorithm
