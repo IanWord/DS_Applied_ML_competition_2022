@@ -5,7 +5,7 @@ Dataset consists of training set 48000 observations, 204 features. Test set is f
 
 First place was dominating for months, approximately 90 percent performance. I tried applying different feature selection methods, dimensionality reduction methods, and tried these on about 15 different models. They were close, but they did not beat the leader. 
 In addition, what I noticed that it was very clear, that our models performed much better precision and recall on class 0 and 2 vs class 1. Here is two random examples from the many models i ran: 
-
+'''
 Classification report from Adaboost tuned 
               precision    recall     support
 
@@ -28,7 +28,7 @@ Classification report from XGBoost tuned
     accuracy                           9600
    macro avg       0.84      0.83      9600
 weighted avg       0.84      0.84      9600
-
+'''
 These results are representative of the patterns I saw in all models. 
 Months went by, and then it hit me. If Class 1 is difficult to distinguish from class 0 and 2, maybe a classifier would have an easier job if it only would have to separate either class 0 from 1 or class 2 from 1. 
 
