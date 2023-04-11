@@ -45,7 +45,7 @@ My approach can be summarized as:
 7. Evaluate prediction
 
 
-My solution: Ensemble of CatBoost Tuned on the three subsets:
+My solution, Ensemble of CatBoost Tuned on the three subsets:
 | Class | Precision | Recall | Support |
 |-------|-----------|--------|---------|
 | 0     | 0.93      | 0.87   | 2462    |
@@ -57,11 +57,12 @@ My solution: Ensemble of CatBoost Tuned on the three subsets:
 |-------|---------------|------|---------|
 
 
-For ppl interested in Feature selection, Boruta, I describe it here:
+Awesome! We significantly bridged the gap in performance on class 1 vs 0 and 2. 
+For ppl interested in the Feature selection algorithm, Boruta, I describe it here:
 
 The Boruta Feature Selection Algorithm
 
-As given by the paper:
+As the paper outlined:
 1.	Extend the information system by adding copies of all variables (the information system is always extended by at least 5 shadow attributes, even if the number of attributes in the original set is lower than 5).
 2.	Shuffle the added attributes to remove their correlations with the response.
 3.	Run a random forest classifier on the extended information system and gather the Z scores computed.
@@ -83,21 +84,21 @@ An original feature is considered to have received a hit when its feature import
 There are three hypotheses:
 
 
-The Null Hypothesis H0
+The Null Hypothesis H0 (more likely to be useless)
 
 We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with rameters k and p before running the test by saying that, in each of the k runs, there is a 50% chance that feature xi will receive a hit (i.e. a probability p=0.5 p=0.5). 
 
-The CDF of a Binomial distribution allows us to compute the two-sided symmetric confidence intervals [mq(k), Mq(k)].
+The CDF of a Binomial distribution allows us to compute the two-sided confidence intervals [mq(k), Mq(k)].
 
 
-The Alternate Hypothesis H1
+The Alternate Hypothesis H1 (more likely to be useful)
 
 When the number of hits hi observed after k runs exceeds Mq(k) we reject the hypothesis H0, that is we believe that feature Xi is more likely to be useful than not.
 
-We have a second alternative hypothessis, that represents the fact that even after say K=100 iterations, results are inconclusive.
+We have a second alternative hypothessis, that represents the fact that even after K iterations, results are inconclusive.
 
 
-The Alternate Hypothesis H2
+The Alternate Hypothesis H2 (more likely useless than useful)
 
 Feature xi is useless When the number of hits hi observed after k runs is lower than mq(k), we reject H0 with the outcome that we lean towards Xi being more useless than useful. 
 
