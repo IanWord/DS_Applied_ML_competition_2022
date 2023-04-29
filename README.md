@@ -73,9 +73,9 @@ As the paper outlined:
 8.	Remove all shadow attributes.
 9.	Repeat the procedure until the importance is assigned for all the attributes, or the algorithm has reached the previously set limit of the random forest runs.
 
-Because shadow features (MZSA) are useless, Boruta basically states that no feature should have worse feature importance scores than shadow features. It cant be important to the classification or regression problem.  
+Because shadow features (MZSA) are useless, Boruta basically states that no feature should have worse feature importance scores than shadow features. It cant be important to the classification or regression problem. 
 
-The shuffling has two functionalities, it breaks down multicollinearity and causes shadow features to have the same marginal distributions as original features, but they are independent of the target both unconditionally and conditional on original features.
+Shuffling of MZSA features has the functionality of breaking multicollinearity while ensuring shadow features has the same marginal distribution as original features (the same statistical properties), but are independent of the target 
 
 In essence, The Boruta algorithm treats the test as a Bernoulli trial. That is, Boruta applied a statistical hypothesis test to support feature selection. Given that shadow features are randomly generated, we have a randomized control experiment with two outcomes, 'higher feature importance score than its shadow feature' 'not higher', that we can repeat k independent times, where we count the number of hits hi of each feature Xi.
 
@@ -86,10 +86,9 @@ There are three hypotheses:
 
 The Null Hypothesis H0 (more likely to be useless)
 
-We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with rameters k and p before running the test by saying that, in each of the k runs, there is a 50% chance that feature xi will receive a hit (i.e. a probability p=0.5 p=0.5). 
+We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with parameters k and p. We expect a useless feature to obtain a hit 50% of the time.  
 
 The CDF of a Binomial distribution allows us to compute the two-sided confidence intervals [mq(k), Mq(k)].
-
 
 The Alternate Hypothesis H1 (more likely to be useful)
 
