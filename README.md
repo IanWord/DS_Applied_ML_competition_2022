@@ -84,23 +84,23 @@ An original feature is considered to have received a hit when its feature import
 There are three hypotheses:
 
 
-The Null Hypothesis H0 (more likely to be useless)
+Null Hypothesis H0 (more likely to be useless)
 
 We do not know apriori whether feature xi is useful or not. We expect the outcomes of the test to follow a Binomial distribution with parameters k and p. We expect a useless feature to obtain a hit 50% of the time.  
 
 The CDF of a Binomial distribution allows us to compute the two-sided confidence intervals [mq(k), Mq(k)].
 
-The Alternate Hypothesis H1 (more likely to be useful)
+Alternate Hypothesis H1 (more likely to be useful)
 
 When the number of hits hi observed after k runs exceeds Mq(k) we reject the hypothesis H0, that is we believe that feature Xi is more likely to be useful than not.
 
 We have a second alternative hypothessis, that represents the fact that even after K iterations, results are inconclusive.
 
 
-The Alternate Hypothesis H2 (more likely useless than useful)
+Alternate Hypothesis H2 (more likely useless than useful)
 
 Feature xi is useless When the number of hits hi observed after k runs is lower than mq(k), we reject H0 with the outcome that we lean towards Xi being more useless than useful. 
 
 This happens occasionally, and you can either choose to change thresholds on Boruta (alpha or the stringency=perc) or you can extend >K to more trials. Eventually it should converge on a decision.
 
-Feature importances are fundamentally flawed. Feature importance score implicitly state that the model is competent. There are high risks that if model is overfitted, you would base your feature selection decisions on wrong premises. What makes Boruta Feature selection more robust is the fact that we first of all test each feature against a randomized copy, and the fact that we rerun the modelling, say 100 times. The chance of overfitting to any single feature, becomes much smaller with a large K. 
+Feature importances are fundamentally flawed. Feature importance score implicitly state that the model is competent. There are high risks that if model is overfitted, you would base your feature selection decisions on wrong premises. What makes Boruta Feature selection more robust is the fact that we first of all test each feature against a randomized copy, and the fact that we rerun the modelling and algorithm process, say 100 times. The chance of overfitting to any single feature, becomes much smaller with a large K. 
